@@ -2,12 +2,8 @@
     <div class="p-6">
         <div class="mb-4 flex items-center justify-between">
             <h1 class="text-2xl font-bold">Daftar User</h1>
-            <input 
-                wire:model.live.debounce.300ms="search" 
-                type="text" 
-                placeholder="Cari berdasarkan nama..." 
-                class="px-4 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
+            <input wire:model.live.debounce.300ms="search" type="text" placeholder="Cari berdasarkan nama..."
+                class="px-4 py-2 border rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
         @if (session()->has('message'))
@@ -33,10 +29,8 @@
                             <td class="p-4 border-b">{{ $user->email }}</td>
                             <td class="p-4 border-b">{{ $user->position }}</td>
                             <td class="p-4 border-b">
-                                <button 
-                                    wire:click="edit({{ $user->id }})" 
-                                    class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                                >
+                                <button wire:click="edit({{ $user->id }})"
+                                    class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
                                     Edit
                                 </button>
                             </td>
@@ -63,34 +57,22 @@
                 <form wire:submit="save">
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
-                        <input 
-                            wire:model="editingName" 
-                            type="text" 
-                            class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500"
-                        >
+                        <input wire:model="editingName" type="text"
+                            class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500">
                         @error('editingName') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-6">
                         <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input 
-                            wire:model="editingEmail" 
-                            type="email" 
-                            class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500"
-                        >
+                        <input wire:model="editingEmail" type="email"
+                            class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500">
                         @error('editingEmail') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                     </div>
                     <div class="flex justify-end gap-3 font-medium">
-                        <button 
-                            type="button" 
-                            wire:click="cancelEdit" 
-                            class="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
-                        >
+                        <button type="button" wire:click="cancelEdit"
+                            class="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300">
                             Batal
                         </button>
-                        <button 
-                            type="submit" 
-                            class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
-                        >
+                        <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
                             Simpan Perubahan
                         </button>
                     </div>
