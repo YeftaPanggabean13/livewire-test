@@ -31,8 +31,6 @@
             </table>
         </div>
 
-        <div class="mt-6 text-sm text-gray-500">
-            * Menampilkan data gabungan dari tabel <code>customers</code> dan <code>orders</code>.
-        </div>
+
     </div>
 </x-layouts.app>

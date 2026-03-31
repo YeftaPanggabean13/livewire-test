@@ -11,11 +11,17 @@ class UserTable extends Component
     use WithPagination;
 
     public $search = '';
+    public $roleFilter = '';
     public $editingUserId = null;
     public $editingName = '';
     public $editingEmail = '';
 
     public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingRoleFilter()
     {
         $this->resetPage();
     }
@@ -53,9 +59,24 @@ class UserTable extends Component
 
     public function render()
     {
+        $query = User::query();
+
+        // Search logic
+        if ($this->search) {
+            $query->where(function ($q) {
+                $q->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('email', 'like', '%' . $this->search . '%')
+                    ->orWhere('position', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        // Filter logic
+        if ($this->roleFilter) {
+            $query->where('position', 'like', '%' . $this->roleFilter . '%');
+        }
+
         return view('livewire.user-table', [
-            'users' => User::where('name', 'like', '%' . $this->search . '%')
-                ->paginate(10),
+            'users' => $query->paginate(10),
         ]);
     }
 }
